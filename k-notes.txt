@@ -1,0 +1,86 @@
+1. npm i
+
+2. npm run build
+
+--------------------------------
+//comandos auxiliares
+
+-docker stop id
+
+-docker rmi -f id
+
+--------------------------------
+
+3. docker build -t andreanicte02/unsafe-react-frontend .
+
+
+4. docker run --name nginx -d -p 8080:80 andreanicte02/unsafe-react-frontend
+//8080 local  - contenedor 
+//localhost 8080
+
+(log si no esta logeado)
+-docker login 
+
+5. docker push name 
+
+----------------------------------------------------
+creando cluster (nos vamos a cluster y abrimos una cloud shell)
+----------------------------------------------------
+
+1. export my_zone=us-central1-a
+
+2. export my_cluster=standard-cluster-1
+
+//gcloud sirve para conectarse de manera remota a los servicios de gcloud
+
+//pasamos como paramtros la zona y el cluster que creamos
+
+3. gcloud container clusters create $my_cluster --num-nodes 3 --zone $my_zone --enable-ip-alias
+
+
+//google tiene un servicio para registrar imagenes, pero usare dockerhub --container registry se llama el servicio
+
+//nos coenctamos 
+4. gcloud container clusters get-credentials standard-cluster-1 --zone us-central1-a --project sopes01
+
+5. git clone.. para pasar el .yaml que vamos a usar
+
+(borrar carpetas)
+6. rm -rf unsafe-golang-react
+
+//interactuamos con el kubctl
+//es la lineas de comandos que manda peticiones al api server del master node
+//le envia las instrucciones a los nodos de que es lo que deben hacer
+
+7. kubectl apply -f nginx-deployment-withrolling.yaml
+
+--------------------------------
+//comandos auxiliares
+
+-kubectl describe pods
+
+-kubectl get pods
+
+-kubectl top nodes
+
+-kubectl get deployments
+
+-kubectl get services
+
+-kubectl describe services
+
+-kubectl get pods --output=wide
+
+-kubectl delete pod name 
+
+-kubectl get rs --watch
+
+-kubectl get rs 
+--------------------------------
+
+//creamos un servicio para exponer el pod
+
+8. kubectl expose deployment testdeploy --type=LoadBalancer --name=my-service
+
+
+
