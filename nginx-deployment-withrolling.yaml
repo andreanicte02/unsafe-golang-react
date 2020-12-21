@@ -21,7 +21,7 @@ spec:
          environment: test
      spec:
        containers:
-       - image: us.gcr.io/sopes01/hello
+       - image: andreanicte02/unsafe-react-frontend
          name: nginx 
          ports:
            - containerPort: 80
